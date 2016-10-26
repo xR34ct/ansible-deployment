@@ -1,0 +1,12 @@
+---
+ - name: Download unattended package
+   action: apt name={{item}} state=installed
+   with_items:
+       - "unattended-upgrades"
+       - "apt-listchanges"
+ - name: Set sources in /etc/apt/apt.conf.d/50unattended-upgrades
+   lineinfile: dest=/etc/apt/apt.conf.d/50unattended-upgrades regexp='(^\/\/)(\ *)(\"o=Debian,a=stable\";)' line='"o=Debian,a=stable";'
+ - name: Set sources other in /etc/apt/apt.conf.d/50unattended-upgrades
+   lineinfile: dest=/etc/apt/apt.conf.d/50unattended-upgrades regexp='(^\/\/)(\ *)(\"o=Debian,a=stable-updates\";)' line='"o=Debian,a=stable-updates";'
+ - name: Set mail in /etc/apt/apt.conf.d/50unattended-upgrades
+   lineinfile: dest=/etc/apt/apt.conf.d/50unattended-upgrades regexp='(^\/\/)(\ *)(Unattended-Upgrade::Mail)' line='Unattended-Upgrade::Mail "logs@sciion.me";'

@@ -1,0 +1,4 @@
+---
+ - name: Download fail2ban package
+   apt: name=fail2ban
+   notify: restart fail2ban

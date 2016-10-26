@@ -1,0 +1,15 @@
+---
+ - name: Include key vault
+   include_vars: public_key_vault.yml
+ - name: Create .ssh dir
+   file: path="/home/{{ item.name }}/.ssh" state=directory owner={{ item.name }} group={{ item.name }}
+   with_items: "{{ users }}"
+ - name: Touch public key file
+   file: path="/home/{{ item.name }}/.ssh/id_rsa.pub" owner={{ item.name }} group={{ item.name }} mode=0644 state=touch
+   with_items: "{{ users }}"
+ - name: Set authorized_keys
+   authorized_key: user={{ item.name }} key="{{ item.pubkey }}"
+   with_items: "{{ users }}"
+ - name: Set public key
+   template: src="pubkey.j2" dest="/home/{{ item.name }}/.ssh/id_rsa.pub" owner={{ item.name }} group={{ item.name }} mode=0644
+   with_items: "{{ users }}"

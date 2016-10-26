@@ -1,0 +1,14 @@
+---
+- name: Provision new host
+  hosts: virtual_machines
+  remote_user: ansible
+  become: yes
+  
+  roles:
+    - common
+    - hostname
+    - fail2ban
+    - postfix
+    - unattended
+    - ssh
+    - resolvconf
