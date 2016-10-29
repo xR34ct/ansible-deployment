@@ -13,3 +13,5 @@
  - name: Set public key
    template: src="pubkey.j2" dest="/home/{{ item.name }}/.ssh/id_rsa.pub" owner={{ item.name }} group={{ item.name }} mode=0644
    with_items: "{{ users }}"
+ - name: Set permit root login to no
+   lineinfile: dest=/etc/ssh/sshd_config regexp='^PermitRootLogin' line='PermitRootLogin no'
