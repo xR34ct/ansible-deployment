@@ -5,11 +5,4 @@
   become: yes
   
   roles:
-    - first_time
-    - common
-    - hostname
-    - fail2ban
-    - postfix
-    - unattended
-    - resolvconf
     - ssh

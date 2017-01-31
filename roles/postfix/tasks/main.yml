@@ -7,4 +7,4 @@
    template: src="mailname.j2" dest="/etc/mailname"
    notify: restart postfix
  - name: Send mail to logs
-   mail: host='localhost' port='25' to="logs <logs@sciion.me>" subject='Ansible-report' body='System {{ ansible_hostname }} has been successfully provisioned.'
+   mail: host='localhost' port='25' to="logs <logs@avdagic.net>" subject='Ansible-report' body='System {{ ansible_hostname }} has been successfully provisioned.'

@@ -1,0 +1,4 @@
+---
+   - name: Include key vault
+     include_vars: vault.yml
+   - user: name=ansible password={{ans_user_pw}} groups=sudo append=yes shell=/bin/bash
