@@ -1,8 +1,11 @@
 ---
  - name: Download resolvconf package
    apt: name=resolvconf
+
  - name: Set nameservers and search domain
-   template: src="default.j2" dest="/etc/resolvconf/resolv.conf.d/head"
+   template: src="default.j2" 
+             dest="/etc/resolvconf/resolv.conf.d/head"
    notify: restart resolvconf 
+
  - name: Update resolv.conf
    command: resolvconf -u
