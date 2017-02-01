@@ -9,7 +9,7 @@
     - common
     - hostname
     - fail2ban
-    - postfix
     - unattended
     - resolvconf
     - ssh
+    - postfix
